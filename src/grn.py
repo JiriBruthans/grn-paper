@@ -206,6 +206,23 @@ class grn(nx.DiGraph):
         if stat == 'logfc':
             return np.log2(new_rna.flatten()) - np.log2(self.rna.flatten())
 
+    def ko_nodes(self, genes, stats=('new_rna',), **kwargs):
+        genes = np.atleast_1d(np.asarray(genes))
+
+        # make sure the baseline steady state exists
+        if not hasattr(self, 'rna'):
+            self.simulate_rna(save=True, **kwargs)
+
+        new_beta = self.beta.copy()
+        new_beta[genes, :] = 0                       # nullify outgoing edges [1]
+        new_rna = self.perturb(new_beta=new_beta, x0=self.rna, **kwargs)
+
+        outputs = {}
+        if 'logfc' in stats:
+            outputs['logfc'] = np.log2(new_rna.flatten()) - np.log2(self.rna.flatten())
+        if 'new_rna' in stats:
+            outputs['new_rna'] = new_rna
+        return outputs
 
 
 
