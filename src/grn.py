@@ -222,6 +222,8 @@ class grn(nx.DiGraph):
             outputs['logfc'] = np.log2(new_rna.flatten()) - np.log2(self.rna.flatten())
         if 'new_rna' in stats:
             outputs['new_rna'] = new_rna
+        if 'convergence' in stats:
+            outputs['convergence'] = self.converged
         return outputs
 
 
