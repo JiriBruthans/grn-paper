@@ -92,7 +92,8 @@ class grn(nx.DiGraph):
         # set edge weights in self.beta if we weren't given them to start
         if G is not None: 
             S = np.random.normal(0, 1, size=(self.n, self.n))
-            E = nx.convert_matrix.to_numpy_matrix(self, multigraph_weight=sum)
+            #E = nx.convert_matrix.to_numpy_matrix(self, multigraph_weight=sum)
+            E = nx.to_numpy_array(self, multigraph_weight=sum)
             # remove self loops
             E -= np.diag(np.diag(E))
             if inflate_edges:
