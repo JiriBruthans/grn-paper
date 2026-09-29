@@ -1,0 +1,122 @@
+{
+  "genes": 256,
+  "pairs": 4096,
+  "pair_seed": 20260928,
+  "networks": [
+    "V1",
+    "V3"
+  ],
+  "seed": null,
+  "conditions": [
+    [
+      "KO",
+      "clamp",
+      0.0
+    ],
+    [
+      "KD_99pct",
+      "production",
+      0.01
+    ],
+    [
+      "KD_90pct",
+      "production",
+      0.1
+    ],
+    [
+      "KD_50pct",
+      "production",
+      0.5
+    ],
+    [
+      "KD_25pct",
+      "production",
+      0.75
+    ],
+    [
+      "CRISPRa_1p25x",
+      "production",
+      1.25
+    ],
+    [
+      "CRISPRa_2x",
+      "production",
+      2.0
+    ],
+    [
+      "CRISPRa_5x",
+      "production",
+      5.0
+    ],
+    [
+      "CRISPRa_10x",
+      "production",
+      10.0
+    ],
+    [
+      "OE_2x",
+      "transgene",
+      2.0
+    ],
+    [
+      "OE_10x",
+      "transgene",
+      10.0
+    ],
+    [
+      "OE_30x",
+      "transgene",
+      30.0
+    ],
+    [
+      "clamp_0p1x",
+      "clamp",
+      0.1
+    ],
+    [
+      "clamp_0p5x",
+      "clamp",
+      0.5
+    ],
+    [
+      "clamp_2x",
+      "clamp",
+      2.0
+    ],
+    [
+      "clamp_10x",
+      "clamp",
+      10.0
+    ],
+    [
+      "clamp_30x",
+      "clamp",
+      30.0
+    ],
+    [
+      "promoter_2x",
+      "promoter",
+      2.0
+    ],
+    [
+      "promoter_10x",
+      "promoter",
+      10.0
+    ]
+  ],
+  "solver": {
+    "dt": 0.2,
+    "max_steps": 5000,
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "check_every": 25
+  },
+  "command": [
+    "job_script/run_modalities.py",
+    "--pairs",
+    "4096",
+    "--workers",
+    "6"
+  ],
+  "note": "Deterministic equilibria; all failed singles/doubles are retained with flags."
+}
