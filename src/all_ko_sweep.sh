@@ -63,7 +63,7 @@ for rr in 2 3 4 5 8 16; do
                     --delta-out "$d_o" \
                     --seed "$seed" \
                     --kos \
-                    --cores 16
+                    --cores 4
 
             done
         done
