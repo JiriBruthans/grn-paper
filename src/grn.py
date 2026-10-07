@@ -55,7 +55,8 @@ def main():
         G.ko = G.ko_all_nodes(n_jobs = args.cores)
 
     # save to file
-    nx.write_gpickle(G, args.out + '.gpickle')
+    with open(args.out + '.gpickle', 'wb') as f:
+        pickle.dump(G, f, protocol=pickle.HIGHEST_PROTOCOL))
     
 
 
