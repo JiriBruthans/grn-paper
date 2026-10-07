@@ -4,6 +4,7 @@ import pandas as pd
 import scipy.special
 import networkx as nx
 from smallworld import grouped_scale_free_graph
+import pickle
 
 
 _README="""
