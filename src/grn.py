@@ -56,7 +56,7 @@ def main():
 
     # save to file
     with open(args.out + '.gpickle', 'wb') as f:
-        pickle.dump(G, f, protocol=pickle.HIGHEST_PROTOCOL))
+        pickle.dump(G, f, protocol=pickle.HIGHEST_PROTOCOL)
     
 
 
