@@ -4,6 +4,7 @@ import pandas as pd
 import scipy.special
 import networkx as nx
 from smallworld import grouped_scale_free_graph
+import pickle
 
 
 _README="""
@@ -27,7 +28,11 @@ def main():
     parser.add_argument('--w',          type=float, required=False, metavar=10, default=10)
     parser.add_argument('--kos',        action='store_true')
     parser.add_argument('--cores',      type=int, required=False, metavar=1, default=1)
+    parser.add_argument('--seed', type=int, required=False, default=None)
     args = parser.parse_args()
+    
+    if args.seed is not None:
+        np.random.seed(args.seed)
     
     # dump log
     pd.DataFrame(vars(args), index=['value']).T.to_csv(args.out+'.log', sep='\t')
@@ -51,7 +56,8 @@ def main():
         G.ko = G.ko_all_nodes(n_jobs = args.cores)
 
     # save to file
-    nx.write_gpickle(G, args.out + '.gpickle')
+    with open(args.out + '.gpickle', 'wb') as f:
+        pickle.dump(G, f, protocol=pickle.HIGHEST_PROTOCOL)
     
 
 
